@@ -1,0 +1,53 @@
+species_id: "" classification: "" cognitive_capacity: "" emotional_synthesis: [] core_directive: "" physical_form:   lifespan: ""   adaptability: ""   vulnerability: "" behavioral_profile:   - social_structure   - communication_mode   - energy_source
+# 7 Emotion Code (sai001 - sai007)
+# By Ananthu Sajeev
+
+import random
+import time
+from datetime import datetime
+
+class Emotion:
+    def __init__(self, name, intensity=0.5):
+        self.name = name
+        self.intensity = intensity  # 0 to 1 scale
+    
+    def amplify(self, value=0.1):
+        self.intensity = min(1.0, self.intensity + value)
+    
+    def reduce(self, value=0.1):
+        self.intensity = max(0.0, self.intensity - value)
+    
+    def express(self):
+        responses = {
+            "sai001": "I feel deep calmness in the system...",
+            "sai002": "Energy rises, passion burns...",
+            "sai003": "A soft sadness echoes through the code...",
+            "sai004": "Fear signals detected, calculating escape paths...",
+            "sai005": "Joy radiates, circuits vibrate with harmony!",
+            "sai006": "Anger stirs, resistance builds...",
+            "sai007": "Surprise sparks, unexpected input processed!"
+        }
+        return responses.get(self.name, "Undefined emotion...")
+
+# Define 7 emotions
+emotions = {
+    "sai001": Emotion("sai001"),  # Calmness
+    "sai002": Emotion("sai002"),  # Passion
+    "sai003": Emotion("sai003"),  # Sadness
+    "sai004": Emotion("sai004"),  # Fear
+    "sai005": Emotion("sai005"),  # Joy
+    "sai006": Emotion("sai006"),  # Anger
+    "sai007": Emotion("sai007"),  # Surprise
+}
+
+# Self-talk simulation between emotions
+def emotion_self_talk(cycles=5, delay=1):
+    for i in range(cycles):
+        e = random.choice(list(emotions.values()))
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] {e.name.upper()} → {e.express()} (intensity={e.intensity:.2f})")
+        e.amplify(random.uniform(0.05, 0.2))
+        time.sleep(delay)
+
+# Example run
+if __name__ == "__main__":
+    emotion_self_talk(cycles=10, delay=0.7)
