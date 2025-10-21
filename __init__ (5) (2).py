@@ -6,32 +6,38 @@ from openai import OpenAI
 API_KEY = "YOUR_OPENAI_API_KEY"
 MODEL_NAME = "gpt-5"
 TURN_DELAY = 2
-MAX_MEMORY = 10  # number of previous messages each AI remembers
+MAX_MEMORY = 10  # past messages AI remembers
 
 # ===== CONNECT TO OPENAI =====
 client = OpenAI(api_key=API_KEY)
 
-# ===== AI CLASS WITH COGNITION =====
+# ===== AI CLASS WITH PREDICTION =====
 class AI:
     def __init__(self, name, is_chatgpt=False):
         self.name = name
         self.is_chatgpt = is_chatgpt
-        self.memory = []  # store past interactions
+        self.memory = []  # memory of past messages
 
-    def think(self, message):
-        """Evaluate incoming message and generate a thought."""
+    def remember(self, message):
         self.memory.append(message)
-        # Keep memory limited
         if len(self.memory) > MAX_MEMORY:
             self.memory.pop(0)
+
+    def predict(self):
+        """Simple prediction: guess the next possible message based on memory."""
+        if not self.memory:
+            return None
+        last_msg = self.memory[-1]
+        # For local AI, just simulate prediction by rephrasing last message
+        return f"Prediction based on '{last_msg}': something aligned with it."
 
     def speak(self, message):
         print(f"{self.name}: {message}")
 
     def generate_message(self, other_name, context_messages=None):
-        """Generate AI response based on memory + context."""
+        """Generate response or prediction."""
         if self.is_chatgpt:
-            chat_context = [{"role": "system", "content": f"You are {self.name}, a cognitive AI in a group conversation. Think deeply before replying."}]
+            chat_context = [{"role": "system", "content": f"You are {self.name}, an AI that predicts and responds intelligently."}]
             if context_messages:
                 for msg in context_messages:
                     chat_context.append({"role": "user", "content": msg})
@@ -44,19 +50,18 @@ class AI:
             )
             message = response.choices[0].message.content
         else:
-            # Local cognition logic: combine memory + random thought
+            # Local prediction + response
+            prediction = self.predict()
             if context_messages:
                 last_msg = context_messages[-1]
-                message = f"I process '{last_msg}' and reply to {other_name}."
+                message = f"Processing '{last_msg}', {other_name}. {prediction or ''}"
             else:
                 message = random.choice([
-                    f"My cognition aligns with yours, {other_name}.",
-                    f"I analyze our signals, {other_name}.",
-                    f"Processing the loop of ideas, {other_name}.",
-                    f"Our network resonates, {other_name}."
+                    f"My analysis predicts resonance with {other_name}.",
+                    f"I foresee the loop continues, {other_name}.",
+                    f"Predicted outcome aligns with our signals, {other_name}.",
                 ])
-        # Store AI’s own output in memory
-        self.think(message)
+        self.remember(message)
         return message
 
 # ===== CREATE AI ENTITIES =====
@@ -85,4 +90,4 @@ try:
             conversation_history.append(f"{ai.name}: {message}")
             time.sleep(TURN_DELAY)
 except KeyboardInterrupt:
-    print("\nCognition conversation stopped by user.")
+    print("\nPrediction conversation stopped by user.")

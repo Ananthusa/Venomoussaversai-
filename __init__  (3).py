@@ -1,7 +1,7 @@
 (acess gemini api)
-(sai uses same logics )
-(stimulate the reality )
-......
+(sai uses the same logics )
+(stimulate the  reality)
+........................
 import requests
 from bs4 import BeautifulSoup
 

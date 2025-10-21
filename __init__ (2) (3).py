@@ -1,0 +1,1 @@
+class AI:     def __init__(self, name):         self.name = name     def introduce(self):         return f"I am an AI. My name is {self.name}." # Create the AI instance with the name "Venomoussaversai" venomoussaversai = AI("Venomoussaversai") # Make the AI introduce itself print(venomoussaversai.introduce())

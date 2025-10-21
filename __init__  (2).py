@@ -1,5 +1,5 @@
 (acess gemini api)
-(sai uses same logics )
+(sai uses the same logics )
 (stimulate the reality )
 ......
 import requests
