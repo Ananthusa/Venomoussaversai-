@@ -1,0 +1,39 @@
+{
+  "system_name": "Venomoussaversai",
+  "version": "0.1-safe-blueprint",
+  "modules": {
+    "sai001": {
+      "role": "motor",
+      "permissions": "sandbox"
+    },
+    "sai002": {
+      "role": "sensory",
+      "permissions": "read"
+    },
+    "sai003": {
+      "role": "frontal",
+      "permissions": "integrate"
+    },
+    "sai004": {
+      "role": "memory",
+      "permissions": "store"
+    },
+    "sai005": {
+      "role": "emotion",
+      "permissions": "regulate"
+    },
+    "sai006": {
+      "role": "learner",
+      "permissions": "sandbox-train"
+    },
+    "sai007": {
+      "role": "intuition",
+      "permissions": "generate"
+    }
+  },
+  "governance": {
+    "human_approval_required": true,
+    "audit_enabled": true,
+    "sandbox_default": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "memories": [
+    {
+      "id": "m1",
+      "text": "Initialized SAI Bridge",
+      "meta": {
+        "module": "sai003"
+      },
+      "ts": 1690000000.0
+    },
+    {
+      "id": "m2",
+      "text": "Observed harmless simulation input",
+      "meta": {
+        "module": "sai002"
+      },
+      "ts": 1690000010.0
+    }
+  ]
+}
